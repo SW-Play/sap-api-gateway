@@ -1,0 +1,23 @@
+name: SonarQube
+
+on:
+  push:
+    paths-ignore:
+      - ".github/**"
+      - renovate.json
+    branches:
+      - main
+
+permissions:
+  contents: read
+  issues: read
+  checks: write
+  pull-requests: write
+
+jobs:
+  sonar:
+    uses: Auruscent/common-workflows/.github/workflows/sonarqube.yml@main
+    secrets: inherit
+    with:
+      java_version: "21"
+      profile: "staging"

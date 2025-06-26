@@ -1,0 +1,28 @@
+name: Build Container Image
+
+on:
+  push:
+    paths-ignore:
+      - ".github/**"
+      - renovate.json
+    branches:
+      - main
+      - "release/*"
+    tags:
+      - "*"
+
+  issue_comment:
+    types:
+      - created
+      - edited
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  build:
+    uses: Auruscent/common-workflows/.github/workflows/build-publish.yml@main
+    secrets: inherit
+    with:
+      java_version: "21"

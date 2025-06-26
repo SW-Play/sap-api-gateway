@@ -1,0 +1,27 @@
+server:
+  port: 9000  # Different from default for local development
+
+management:
+  server:
+    port: 8000
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/SWP
+          jwk-set-uri: http://localhost:8080/realms/SWP/protocol/openid-connect/certs
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.netty: DEBUG
+    redisratelimiter: DEBUG
